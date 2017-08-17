@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\gamesfml"
   ],
-  "SelectedNode": "\\main.cpp",
+  "SelectedNode": "\\gamesfml\\gamesfml.sln",
   "PreviewInSolutionExplorer": false
 }

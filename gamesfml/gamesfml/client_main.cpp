@@ -18,7 +18,7 @@ int main()
 		case GameState::MENU_ENGINE:
 		{
 			Engine engine;
-			engine.runEngine();
+			engine.runEngine(window);
 			break;
 		}
 		case GameState::END_ENGINE:

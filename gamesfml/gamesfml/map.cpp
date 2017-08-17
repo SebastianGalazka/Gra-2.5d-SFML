@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "map.h"
 
 
@@ -11,20 +12,13 @@ Level::~Level()
 }
 void Level::LoadSizeOfMapAndSet()
 {
-	if (map.good() == true)
-	{
 		std::string size;
 		map >> width >> height;
-		if (width != 0 && height != 0)
+		if (width == 0 || height == 0)
 		{
 			map.close();
 		}
-		cout << "Otworzono plik z mapa." << endl;
-	}
-	else
-	{
-		cout << "Wystapil problem z otworzeniem mapy." << endl;
-	}
+	
 	floor.resize(height);
 	for (int i = 0; i < height; i++)
 	{
@@ -42,11 +36,31 @@ void Level::LoadMapToVector()
 			floor[x][y] = buffer;
 		}
 	}
+	map.close();
+}
+void Level::LoadLevel(std::string a)
+{
+	map.open(a, std::ios::in | std::ios::out);
+	if (map.good() == true)
+	{
+		cout << "Otworzono plik z mapa." << endl;
+		LoadSizeOfMapAndSet();
+		LoadMapToVector();
+	}
+	else
+	{
+		cout << "Wystapil problem z otworzeniem mapy." << endl;
+	}
+}
+void Level::LoadGraphic()
+{
+
+}
+void Level::LoadGraphicToVector()
+{
+
 }
 void Level::LoadMap(std::string a)
 {
-	map.open(a);
-	LoadSizeOfMapAndSet();
-	LoadMapToVector();
-	
+	LoadLevel(a);
 }
