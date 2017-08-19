@@ -14,13 +14,12 @@ public:
 	~Level();
 	unsigned short width;
 	unsigned short height;
-	Texture texture;
+	Texture graphic, texture;
 	fstream map;
-	vector <vector< int > > floor;
+	vector <vector< char > > floor;
 	vector <vector< Sprite > > sprite;
-
 	void LoadMap(std::string a);
-	void LoadSizeOfMapAndSet();
+	void LoadSizeOfMapAndResizeVector();
 	void LoadMapToVector();
 	void LoadLevel(std::string a);
 	void LoadGraphicToVector();

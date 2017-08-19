@@ -22,15 +22,13 @@ void Engine::runEngine(sf::RenderWindow& window)
 			}
 		}
 		window.clear();
-		/*
 		for (int x = 0; x < level.height; x++)
 		{
 			for (int y = 0; y < level.width; y++)
 			{
-				window.draw(level.map[x][y]);
+				window.draw(level.sprite[x][y]);
 			}
 		}
-		*/
 	
 		window.display();
 	}
