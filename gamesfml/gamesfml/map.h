@@ -12,12 +12,17 @@ class Level
 public:
 	Level();
 	~Level();
+	struct Tile
+	{
+		Sprite texture;
+		string TypeOfTexture;
+		bool Collision;
+	};
+	vector<vector<Tile> > sprite;
 	unsigned short width;
 	unsigned short height;
 	Texture graphic, texture;
 	fstream map;
-	vector <vector< char > > floor;
-	vector <vector< Sprite > > sprite;
 	void LoadMap(std::string a);
 	void LoadSizeOfMapAndResizeVector();
 	void LoadMapToVector();

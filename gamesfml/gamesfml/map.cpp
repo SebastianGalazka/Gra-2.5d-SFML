@@ -12,17 +12,14 @@ Level::~Level()
 }
 void Level::LoadSizeOfMapAndResizeVector()
 {
-	std::string size;
 	map >> width >> height;
 	if (width == 0 || height == 0)
 	{
 		map.close();
 	}
 	sprite.resize(height);
-	floor.resize(height);
 	for (int i = 0; i < height; i++)
 	{
-		floor[i].resize(width);
 		sprite[i].resize(width);
 	}
 }
@@ -32,16 +29,16 @@ void Level::LoadMapToVector()
 	{
 		for (int y = 0; y < width; y++)
 		{
-			int buffer;
+			string buffer;
 			map >> buffer;
-			floor[x][y] = buffer;
+			sprite[x][y].TypeOfTexture = buffer;
 		}
 	}
 	map.close();
 }
 void Level::LoadLevel(std::string a)
 {
-	map.open(a, std::ios::in | std::ios::out);
+	map.open(a, std::ios::in);
 	if (map.good() == true)
 	{
 		LoadSizeOfMapAndResizeVector();
@@ -65,14 +62,22 @@ void Level::LoadGraphicToVector()
 	{
 		for (int y = 0; y < width; y++)
 		{
-			if (floor[x][y] == 1)
+			cout << sprite[x][y].TypeOfTexture;
+			if (sprite[x][y].TypeOfTexture=="1")
 			{
-				cout << floor[x][y] << endl;
-				sprite[x][y].setTexture(graphic);
-				//sprite[x][y].setTextureRect(sf::IntRect(0, 0, 32, 32));
-				sprite[x][y].setPosition(x*32,y*32);
+				
+				sprite[x][y].texture.setTexture(graphic);
+				sprite[x][y].texture.setTextureRect(sf::IntRect(0, 0, 32, 32));
+				sprite[x][y].texture.setPosition(x * 32, y * 32);
+			}
+			if (sprite[x][y].TypeOfTexture == "0")
+			{
+				sprite[x][y].texture.setTexture(graphic);
+				sprite[x][y].texture.setTextureRect(sf::IntRect(32, 32, 32, 32));
+				sprite[x][y].texture.setPosition(x * 32, y * 32);
 			}
 		}
+		cout << endl;
 	}
 }
 void Level::LoadMap(std::string a)

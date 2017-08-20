@@ -26,10 +26,9 @@ void Engine::runEngine(sf::RenderWindow& window)
 		{
 			for (int y = 0; y < level.width; y++)
 			{
-				window.draw(level.sprite[x][y]);
+				window.draw(level.sprite[x][y].texture);
 			}
 		}
-	
 		window.display();
 	}
 }
