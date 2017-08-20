@@ -6,7 +6,7 @@
 
 using namespace std;
 using namespace sf;
-
+//szerokosc - wysokosc
 class Level
 {
 public:

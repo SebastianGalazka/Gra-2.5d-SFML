@@ -63,18 +63,20 @@ void Level::LoadGraphicToVector()
 		for (int y = 0; y < width; y++)
 		{
 			cout << sprite[x][y].TypeOfTexture;
-			if (sprite[x][y].TypeOfTexture=="1")
+			if (sprite[x][y].TypeOfTexture=="0")
 			{
 				
 				sprite[x][y].texture.setTexture(graphic);
-				sprite[x][y].texture.setTextureRect(sf::IntRect(0, 0, 32, 32));
-				sprite[x][y].texture.setPosition(x * 32, y * 32);
+				sprite[x][y].texture.setTextureRect(sf::IntRect(0, 0, 64, 32));
+				sprite[x][y].texture.setPosition(y * 32, x * 32);
+				//sprite[x][y].texture.rotate(45);
 			}
-			if (sprite[x][y].TypeOfTexture == "0")
+			if (sprite[x][y].TypeOfTexture == "1")
 			{
 				sprite[x][y].texture.setTexture(graphic);
-				sprite[x][y].texture.setTextureRect(sf::IntRect(32, 32, 32, 32));
-				sprite[x][y].texture.setPosition(x * 32, y * 32);
+				sprite[x][y].texture.setTextureRect(sf::IntRect(32, 32, 64, 32));
+				sprite[x][y].texture.setPosition(y * 32, x * 32);
+				//sprite[x][y].texture.rotate(45);
 			}
 		}
 		cout << endl;
