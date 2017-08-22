@@ -7,5 +7,6 @@ class Engine
 {
 public:
 	void runEngine(sf::RenderWindow& window);
+	void IsometricMap(sf::RenderWindow *win, sf::View view);
 	GamePlay gameplay;
 };
