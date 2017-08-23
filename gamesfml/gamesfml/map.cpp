@@ -1,14 +1,6 @@
 #include "stdafx.h"
 #include "map.h"
 
-sf::Vector2f WorldToScreen(sf::Vector2f v)
-{
-	return sf::Vector2f(2.0f*v.x - 2.0f*v.y, v.x + v.y);
-}
-sf::Vector2f ScreenToWorld(sf::Vector2f v)
-{
-	return sf::Vector2f((v.x + 2.0f*v.y) / 4.0f, (2.0f*v.y - v.x) / 4.0f);
-}
 Level::Level()
 {
 
@@ -65,69 +57,26 @@ void Level::LoadGraphic()
 }
 void Level::LoadGraphicToVector()
 {
-	for (int x = 0; x < height; x++)
+	for (int x =0 ; x<height ; x++)
 	{
-		for (int y = 0 ; y<width ; y++)
+		for (int y=0 ; y< width ; y++)
 		{
-			cout << sprite[x][y].TypeOfTexture;
 			if (sprite[x][y].TypeOfTexture == "0")
 			{
-				
-
 				sprite[x][y].texture.setTexture(graphic);
 				sprite[x][y].texture.setTextureRect(sf::IntRect(0, 0, 32, 32));
-				//sprite[x][y].texture.setPosition(y * 32, x * 32);
-				sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2),(x * 32 / 2) - (y * 32 / 2));
-				sprite[x][y].texture.setRotation(45);
-				//sf::Vector2f position = ScreenToWorld(sprite[x][y].texture.getPosition());
-				//position.y -= 0.866;
-				//sprite[x][y].texture.setPosition(position);
-			}
-			if (sprite[x][y].TypeOfTexture == "1")
-			{
-				sprite[x][y].texture.setTexture(graphic);
-				sprite[x][y].texture.setTextureRect(sf::IntRect(32, 32, 32, 32));
-				//sprite[x][y].texture.setPosition(y * 32, x * 32);
+				//sprite[x][y].texture.setRotation(45);
 				sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2), (x * 32 / 2) - (y * 32 / 2));
-				sprite[x][y].texture.setRotation(45);
-				//sf::Vector2f position = ScreenToWorld(sprite[x][y].texture.getPosition());
-				//position.y -= 0.866;
-				//sprite[x][y].texture.setPosition(position);
-
-			}
-			cout << endl;
-		}
-	}
-	/*
-	for (int x = 0; x < height; x++)
-	{
-		for (int y = 0; y < width; y++)
-		{
-			cout << sprite[x][y].TypeOfTexture;
-			if (sprite[x][y].TypeOfTexture == "0")
-			{
-
-				sprite[x][y].texture.setTexture(graphic);
-				sprite[x][y].texture.setTextureRect(sf::IntRect(0, 0, 32, 32));
-				sprite[x][y].texture.setPosition(y * 32, x * 32);
-				//sf::Vector2f position = ScreenToWorld(sprite[x][y].texture.getPosition());
-				//position.y -= 0.866;
-				//sprite[x][y].texture.setPosition(position);
 			}
 			if (sprite[x][y].TypeOfTexture == "1")
 			{
 				sprite[x][y].texture.setTexture(graphic);
 				sprite[x][y].texture.setTextureRect(sf::IntRect(32, 32, 32, 32));
-				sprite[x][y].texture.setPosition(y * 32, x * 32);
-				//sf::Vector2f position = ScreenToWorld(sprite[x][y].texture.getPosition());
-				//position.y -= 0.866;
-				//sprite[x][y].texture.setPosition(position);
-
+				//sprite[x][y].texture.setRotation(45);
+				sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2), (x * 32 / 2) - (y * 32 / 2));
 			}
-			cout << endl;
 		}
 	}
-	*/
 }
 void Level::LoadMap(std::string a)
 {
