@@ -65,15 +65,26 @@ void Level::LoadGraphicToVector()
 			{
 				sprite[x][y].texture.setTexture(graphic);
 				sprite[x][y].texture.setTextureRect(sf::IntRect(0, 0, 32, 32));
+				sf::Vector2f vec(16 * x, 16 * y);
+				sf::Vector2f vec2(0, 0);
+				vec2.x = vec.x - vec.y;
+				vec2.y = (vec.y + vec.x) / 2;
 				//sprite[x][y].texture.setRotation(45);
-				sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2), (x * 32 / 2) - (y * 32 / 2));
+				//sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2), (x * 32 / 2) - (y * 32 / 2));
+				sprite[x][y].texture.setPosition(vec2);
+
 			}
 			if (sprite[x][y].TypeOfTexture == "1")
 			{
 				sprite[x][y].texture.setTexture(graphic);
-				sprite[x][y].texture.setTextureRect(sf::IntRect(32, 32, 32, 32));
+				sprite[x][y].texture.setTextureRect(sf::IntRect(32, 0, 32, 32));
+				sf::Vector2f vec(16 * x, 16 * y);
+				sf::Vector2f vec2(0, 0);
+				vec2.x = vec.x - vec.y;
+				vec2.y = (vec.y + vec.x) / 2;
 				//sprite[x][y].texture.setRotation(45);
-				sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2), (x * 32 / 2) - (y * 32 / 2));
+				//sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2), (x * 32 / 2) - (y * 32 / 2));
+				sprite[x][y].texture.setPosition(vec2);
 			}
 		}
 	}

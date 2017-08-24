@@ -10,6 +10,7 @@ using namespace sf;
 int main()
 {
 	RenderWindow window(VideoMode::getDesktopMode(), "Gra", Style::Default);
+
 	GameState state=MENU_ENGINE;
 	while (state != END)
 	{
