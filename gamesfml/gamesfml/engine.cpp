@@ -1,14 +1,16 @@
 #include "stdafx.h"
 #include "engine.h"
 #include "motion.h"
+#include "character.h"
 #include "iostream"
 
 void Engine::runEngine(sf::RenderWindow& window)
 {
 	gameplay = GAME;
 	Motion motion;
-	motion.LoadSpritesAndSetSprite();
+	Character character;
 	Level level;
+	character.LoadSpritesAndSetSprites();
 	level.LoadMap("level.txt");
 
 	sf::View view = window.getDefaultView();
@@ -22,21 +24,11 @@ void Engine::runEngine(sf::RenderWindow& window)
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			switch (event.type)
+			if (event.type == sf::Event::Closed)
 			{
-			case sf::Event::Closed:
-				window.close();
-				break;
-			case sf::Event::KeyPressed:
-				if (event.key.code == sf::Keyboard::Escape)
-				{
-					exit(1);
-				}
-				break;
-
-			default:
-				break;
+				exit(1);
 			}
+			motion.IsMoveKeyPressed(event, character.character);
 		}
 		window.clear();
 		for (int x = 0; x < level.height; x++)
@@ -46,7 +38,7 @@ void Engine::runEngine(sf::RenderWindow& window)
 				window.draw(level.sprite[x][y].texture);
 			}
 		}
-		window.draw(motion.character);
+		window.draw(character.character);
 		window.display();
 	}
 }

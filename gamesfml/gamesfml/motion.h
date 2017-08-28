@@ -7,9 +7,7 @@ using namespace std;
 class Motion
 {
 public:
-	sf::Texture texture_of_character;
-	sf::Sprite character;
-
-	void LoadSpritesAndSetSprite();
-	void SetPositionOfSprite();
+	int velocity=1.5;
+	void Move(sf::Sprite sprite);
+	void IsMoveKeyPressed(sf::Event event, sf::Sprite sprite);
 };

@@ -1,16 +1,28 @@
 #include "stdafx.h"
 #include "motion.h"
 
-void Motion::SetPositionOfSprite()
+void Motion::Move(sf::Sprite sprite)
 {
-	character.setPosition(100, 100);
+	float rotation = sprite.getRotation();
+	float vx = sin((rotation * 3.14) / 180.0f);
+	float vy = -cos((rotation * 3.14) / 180.0f);
+	//sprite.move(velocity*vx, velocity*vy);
+	sprite.move(100, 100);
+	
 }
-void Motion::LoadSpritesAndSetSprite()
+void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite sprite)
 {
-	if (!texture_of_character.loadFromFile("czolg.png"))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		cout << "Wystapil problem z zaladowaniem grafiki." << endl;
+		cout << "trybi" << endl;
+		velocity = 100;
+		Move(sprite);
+		sprite.move(10, 10);
 	}
-	character.setTexture(texture_of_character);
-	SetPositionOfSprite();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		velocity = -100;
+		Move(sprite);
+	}
 }
+
