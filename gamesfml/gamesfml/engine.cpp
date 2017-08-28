@@ -4,7 +4,20 @@
 #include "character.h"
 #include "iostream"
 
-void Engine::runEngine(sf::RenderWindow& window)
+Engine::Engine()
+{
+}
+void Engine::GameLoop()
+{
+	if (ElapsedTime.asSeconds() > (1.f / FPS))
+	{
+
+		clock.restart();
+		ElapsedTime = Time::Zero;
+	}
+	ElapsedTime = clock.getElapsedTime();
+}
+void Engine::RunEngine(sf::RenderWindow& window)
 {
 	gameplay = GAME;
 	Motion motion;
@@ -18,18 +31,15 @@ void Engine::runEngine(sf::RenderWindow& window)
 	view.setCenter(level.sprite[level.height / 2][level.width / 2].texture.getPosition().x, level.sprite[level.height / 2][level.width / 2].texture.getPosition().y);
 	window.setView(view);
 
-
 	while (gameplay == GAME)
 	{
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
-			{
-				exit(1);
-			}
-			motion.IsMoveKeyPressed(event, character.character);
+			motion.IsMoveKeyPressed(event, character.character, UpdateRate);
 		}
+		GameLoop();
+
 		window.clear();
 		for (int x = 0; x < level.height; x++)
 		{
@@ -38,7 +48,7 @@ void Engine::runEngine(sf::RenderWindow& window)
 				window.draw(level.sprite[x][y].texture);
 			}
 		}
-		window.draw(character.character);
+		window.draw(character.character);	
 		window.display();
 	}
 }

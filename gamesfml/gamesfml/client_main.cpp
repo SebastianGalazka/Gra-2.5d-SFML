@@ -19,7 +19,7 @@ int main()
 		case GameState::MENU_ENGINE:
 		{
 			Engine engine;
-			engine.runEngine(window);
+			engine.RunEngine(window);
 			break;
 		}
 		case GameState::END_ENGINE:

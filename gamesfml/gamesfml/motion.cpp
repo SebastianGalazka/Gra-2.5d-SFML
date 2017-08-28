@@ -1,28 +1,58 @@
 #include "stdafx.h"
 #include "motion.h"
 
-void Motion::Move(sf::Sprite sprite)
+sf::Vector2f WorldToScreen(sf::Vector2f v)
 {
-	float rotation = sprite.getRotation();
-	float vx = sin((rotation * 3.14) / 180.0f);
-	float vy = -cos((rotation * 3.14) / 180.0f);
-	//sprite.move(velocity*vx, velocity*vy);
-	sprite.move(100, 100);
-	
+	return sf::Vector2f(2.0f*v.x - 2.0f*v.y, v.x + v.y);
 }
-void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite sprite)
+sf::Vector2f ScreenToWorld(sf::Vector2f v)
+{
+	return sf::Vector2f((v.x + 2.0f*v.y) / 4.0f, (2.0f*v.y - v.x) / 4.0f);
+}
+void Motion::Move(sf::Sprite &sprite, sf::Time lastframe, std::string direction)
+{	
+	int newX = sprite.getPosition().x + (0 * velocity);
+	int newY = sprite.getPosition().y + (0 * velocity);
+	sf::Vector2f v = WorldToScreen(sf::Vector2f(newX, newY));
+	cout << v.x << " " << v.y << endl;
+	if (direction == "up")
+	{
+		sprite.move(velocity*v.x, velocity*v.y);
+	}
+	if (direction == "down")
+	{
+		sprite.move(velocity*v.x, velocity*v.y);
+	}
+	if (direction == "left")
+	{
+		
+	};
+	if (direction == "right")
+	{
+		
+	}
+}
+void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite &sprite, sf::Time lastframe)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		cout << "trybi" << endl;
-		velocity = 100;
-		Move(sprite);
-		sprite.move(10, 10);
+		Move(sprite, lastframe, "up");
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		velocity = -100;
-		Move(sprite);
+		Move(sprite, lastframe, "down");
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		Move(sprite, lastframe, "left");
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		Move(sprite, lastframe, "right");
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		exit(1);
 	}
 }
 

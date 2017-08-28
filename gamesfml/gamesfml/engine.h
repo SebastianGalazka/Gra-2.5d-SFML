@@ -6,7 +6,14 @@
 class Engine
 {
 public:
-	void runEngine(sf::RenderWindow& window);
+	const float FPS = 60;
+	Clock clock;
+	Time ElapsedTime;
+	Time UpdateRate;
+
+	Engine();
+	void RunEngine(sf::RenderWindow& window);
 	void IsometricMap(sf::RenderWindow *win, sf::View view);
+	void GameLoop();
 	GamePlay gameplay;
 };
