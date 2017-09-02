@@ -1,2 +1,2 @@
 # Gra-2.5d-SFML
-[C++/SFML] Izometryczna gra 
+[C++/SFML] Gra 2d
