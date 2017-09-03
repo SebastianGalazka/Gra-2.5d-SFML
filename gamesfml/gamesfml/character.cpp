@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "character.h"
+#include "gamestate.h"
 
 void Character::SetPositionOfSprite()
 {
 	character.setPosition(70, 200);
-	direction = S;
+	character.setOrigin(character.getGlobalBounds().width / 2, character.getGlobalBounds().height / 2);
 }
 void Character::LoadSpritesAndSetSprites()
 {

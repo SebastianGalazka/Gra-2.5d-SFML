@@ -11,7 +11,6 @@ void Engine::GameLoop()
 {
 	if (ElapsedTime.asSeconds() > (1.f / FPS))
 	{
-
 		clock.restart();
 		ElapsedTime = Time::Zero;
 	}
@@ -28,7 +27,8 @@ void Engine::RunEngine(sf::RenderWindow& window)
 
 	sf::View view = window.getDefaultView();
 	//view.setSize(view.getSize().x, view.getSize().y * 2);
-	view.setCenter(level.sprite[level.height / 2][level.width / 2].texture.getPosition().x, level.sprite[level.height / 2][level.width / 2].texture.getPosition().y);
+	//view.setCenter(level.sprite[level.height / 2][level.width / 2].texture.getPosition().x, level.sprite[level.height / 2][level.width / 2].texture.getPosition().y);
+	view.setCenter(character.character.getPosition());
 	window.setView(view);
 
 	while (gameplay == GAME)
@@ -36,10 +36,10 @@ void Engine::RunEngine(sf::RenderWindow& window)
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			motion.IsMoveKeyPressed(event, character.character, UpdateRate);
+			motion.IsMoveKeyPressed(event, character.character);
 		}
 		GameLoop();
-
+		motion.SetDirection(window, character.character);
 		window.clear();
 		for (int x = 0; x < level.height; x++)
 		{
