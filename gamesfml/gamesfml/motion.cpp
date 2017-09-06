@@ -22,7 +22,7 @@ int Motion::Rotation(sf::RenderWindow& window, sf::Sprite &sprite)
 
 	return rotation + 180;
 }
-void Motion::Move(sf::Sprite &sprite)
+void Motion::Move(sf::Sprite &sprite, enum Direction_Of_Character direction)
 {
 
 	int newX = sprite.getPosition().x + (0 * velocity);
