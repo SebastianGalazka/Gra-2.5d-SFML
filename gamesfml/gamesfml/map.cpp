@@ -69,8 +69,6 @@ void Level::LoadGraphicToVector()
 				sf::Vector2f vec2(0, 0);
 				vec2.x = vec.x - vec.y;
 				vec2.y = (vec.y + vec.x) / 2;
-				//sprite[x][y].texture.setRotation(45);
-				//sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2), (x * 32 / 2) - (y * 32 / 2));
 				sprite[x][y].texture.setPosition(vec2);
 
 			}
@@ -82,8 +80,6 @@ void Level::LoadGraphicToVector()
 				sf::Vector2f vec2(0, 0);
 				vec2.x = vec.x - vec.y;
 				vec2.y = (vec.y + vec.x) / 2;
-				//sprite[x][y].texture.setRotation(45);
-				//sprite[x][y].texture.setPosition((y * 32 / 2) + (x * 32 / 2), (x * 32 / 2) - (y * 32 / 2));
 				sprite[x][y].texture.setPosition(vec2);
 			}
 		}
