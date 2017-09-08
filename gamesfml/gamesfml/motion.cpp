@@ -22,50 +22,90 @@ int Motion::Rotation(sf::RenderWindow& window, sf::Sprite &sprite)
 
 	return rotation + 180;
 }
-void Motion::Move(sf::Sprite &sprite, enum Direction_Of_Character direction)
+void Motion::SetDirection(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character direction, Movement_Of_Character movement_of_character)
 {
+	movement_of_character = STAND;
+	if (movement_of_character == STAND)
+	{
+		if (direction == N)
+		{
+			sprite.setTextureRect(sf::IntRect(350, 0, 92, 173));
+		}
+		if (direction == S)
+		{
+			sprite.setTextureRect(sf::IntRect(0, 0, 92, 163));
+		}
+		if (direction == W)
+		{
+			sprite.setTextureRect(sf::IntRect(154, 0, 85, 175));
+		};
+		if (direction == E)
+		{
+			sprite.setTextureRect(sf::IntRect(505, 0, 86, 163));
+		}
+		if (direction == NW)
+		{
+			sprite.setTextureRect(sf::IntRect(239, 0, 111, 169));
+		}
+		if (direction == NE)
+		{
+			sprite.setTextureRect(sf::IntRect(442, 0, 63, 168));
+		}
+		if (direction == SE)
+		{
+			sprite.setTextureRect(sf::IntRect(591, 0, 111, 146));
+		}
+		if (direction == SW)
+		{
+			sprite.setTextureRect(sf::IntRect(92, 0, 62, 177));
+		}
 
-	int newX = sprite.getPosition().x + (0 * velocity);
-	int newY = sprite.getPosition().y + (0 * velocity);
-	sf::Vector2f v = WorldToScreen(sf::Vector2f(newX, newY));
-	if (direction == N)
-	{
-		cout << "N" << endl;
-		//sprite.move(velocity*v.x, velocity*v.y);
-		//sprite.setTextureRect(sf::IntRect(350, 0, 92, 173));
-		sprite.setTextureRect(sf::IntRect(350, 0, 92, 173));
-	}
-	if (direction == S)
-	{
-		//sprite.move(velocity*v.x, velocity*v.y);
-		sprite.setTextureRect(sf::IntRect(0, 0, 92, 163));
-	}
-	if (direction == W)
-	{
-		sprite.setTextureRect(sf::IntRect(154, 0, 85, 175));
-	};
-	if (direction == E)
-	{
-		sprite.setTextureRect(sf::IntRect(505, 0, 86, 163));
-	}
-	if (direction == NW)
-	{
-		sprite.setTextureRect(sf::IntRect(239, 0, 111, 169));
-	}
-	if (direction == NE)
-	{
-		sprite.setTextureRect(sf::IntRect(442, 0, 63, 168));
-	}
-	if (direction == SE)
-	{
-		sprite.setTextureRect(sf::IntRect(591, 0, 111, 146));
-	}
-	if (direction == SW)
-	{
-		sprite.setTextureRect(sf::IntRect(92, 0, 62, 177));
 	}
 }
-void Motion::SetDirection(sf::RenderWindow& window, sf::Sprite &sprite)
+void Motion::Move(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character direction, Movement_Of_Character movement_of_character)
+{
+	SetDirection(window, sprite, direction, movement_of_character);
+}
+void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite &sprite, Direction_of_Character direction)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		direction = N;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		direction = S;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		direction = W;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		direction = E;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		direction = NW;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		direction = NE;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		direction = SW;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		direction = SE;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		exit(1);
+	}
+}
+void Motion::Shot(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character direction)
 {
 	cout << Rotation(window, sprite) << endl;
 	int rotation = Rotation(window, sprite);
@@ -102,45 +142,4 @@ void Motion::SetDirection(sf::RenderWindow& window, sf::Sprite &sprite)
 	{
 		direction = NW;
 	}
-	Move(sprite);
 }
-void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite &sprite)
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		//Move(sprite,N);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		//Move(sprite, "S");
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		//Move(sprite, "W");
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		//Move(sprite, "E");
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		//Move(sprite, "NW");
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		//Move(sprite, "NE");
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		//Move(sprite, "SW");
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		//Move(sprite, "SE");
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	{
-		exit(1);
-	}
-}
-

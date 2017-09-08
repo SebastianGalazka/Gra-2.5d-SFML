@@ -22,6 +22,8 @@ void Engine::RunEngine(sf::RenderWindow& window)
 	Motion motion;
 	Character character;
 	Level level;
+	Direction_of_Character direction = N;
+	Movement_Of_Character movement_of_character = STAND;
 	character.LoadSpritesAndSetSprites();
 	level.LoadMap("level.txt");
 
@@ -36,10 +38,10 @@ void Engine::RunEngine(sf::RenderWindow& window)
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			motion.IsMoveKeyPressed(event, character.character);
+			motion.IsMoveKeyPressed(event, character.character, direction);
 		}
 		GameLoop();
-		motion.SetDirection(window, character.character);
+		motion.Move(window, character.character, direction, movement_of_character);
 		window.clear();
 		for (int x = 0; x < level.height; x++)
 		{

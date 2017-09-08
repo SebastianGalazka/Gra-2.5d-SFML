@@ -12,8 +12,4 @@ public:
 	sf::Sprite character;
 	void LoadSpritesAndSetSprites();
 	void SetPositionOfSprite();
-	typedef enum {STAND, RUSH, SHOT} Movement_Of_Character;
-	Movement_Of_Character movement_of_character = STAND;
-	typedef enum { N, NE, E, SE, S, SW, W, NW } Direction_of_Character;
-	Direction_of_Character direction = N;
 };
