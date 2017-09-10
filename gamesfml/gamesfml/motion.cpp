@@ -22,6 +22,13 @@ int Motion::Rotation(sf::RenderWindow& window, sf::Sprite &sprite)
 
 	return rotation + 180;
 }
+void Motion::Run(Movement_Of_Character movement_of_character)
+{
+	if (movement_of_character == RUN)
+	{
+
+	}
+}
 void Motion::SetDirection(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character direction, Movement_Of_Character movement_of_character)
 {
 	movement_of_character = STAND;
@@ -66,44 +73,53 @@ void Motion::Move(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Cha
 {
 	SetDirection(window, sprite, direction, movement_of_character);
 }
-void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite &sprite, Direction_of_Character direction)
+void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite &sprite, Direction_of_Character direction, Movement_Of_Character movement_of_character)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		direction = N;
+		movement_of_character = RUN;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		direction = S;
+		movement_of_character = RUN;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		direction = W;
+		movement_of_character = RUN;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		direction = E;
+		movement_of_character = RUN;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		direction = NW;
+		movement_of_character = RUN;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		direction = NE;
+		movement_of_character = RUN;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		direction = SW;
+		movement_of_character = RUN;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		direction = SE;
+		movement_of_character = RUN;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		exit(1);
 	}
+	movement_of_character = STAND;
 }
 void Motion::Shot(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character direction)
 {

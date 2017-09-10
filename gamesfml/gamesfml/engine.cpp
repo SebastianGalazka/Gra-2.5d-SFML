@@ -38,7 +38,7 @@ void Engine::RunEngine(sf::RenderWindow& window)
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			motion.IsMoveKeyPressed(event, character.character, direction);
+			motion.IsMoveKeyPressed(event, character.character, direction, movement_of_character);
 		}
 		GameLoop();
 		motion.Move(window, character.character, direction, movement_of_character);
