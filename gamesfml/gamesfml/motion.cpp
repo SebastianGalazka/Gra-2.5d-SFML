@@ -22,11 +22,12 @@ int Motion::Rotation(sf::RenderWindow& window, sf::Sprite &sprite)
 
 	return rotation + 180;
 }
-void Motion::Run(Movement_Of_Character movement_of_character)
+void Motion::Run(sf::Sprite &sprite, Direction_of_Character direction, Movement_Of_Character movement_of_character)
 {
 	if (movement_of_character == RUN)
 	{
-
+		cout << "tutaj dziala" << endl;
+		animation.UpdateFrameOfCharacter(sprite, direction);
 	}
 }
 void Motion::SetDirection(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character direction, Movement_Of_Character movement_of_character)
@@ -66,19 +67,21 @@ void Motion::SetDirection(sf::RenderWindow& window, sf::Sprite &sprite, Directio
 		{
 			sprite.setTextureRect(sf::IntRect(92, 0, 62, 177));
 		}
-
 	}
 }
 void Motion::Move(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character direction, Movement_Of_Character movement_of_character)
 {
 	SetDirection(window, sprite, direction, movement_of_character);
+	Run(sprite, direction, movement_of_character);
 }
 void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite &sprite, Direction_of_Character direction, Movement_Of_Character movement_of_character)
 {
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		direction = N;
 		movement_of_character = RUN;
+
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
@@ -119,7 +122,7 @@ void Motion::IsMoveKeyPressed(sf::Event event, sf::Sprite &sprite, Direction_of_
 	{
 		exit(1);
 	}
-	movement_of_character = STAND;
+	//movement_of_character = STAND;
 }
 void Motion::Shot(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character direction)
 {
