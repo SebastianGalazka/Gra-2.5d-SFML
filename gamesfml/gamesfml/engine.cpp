@@ -7,15 +7,6 @@
 Engine::Engine()
 {
 }
-void Engine::GameLoop()
-{
-	if (ElapsedTime.asSeconds() > (1.f / FPS))
-	{
-		clock.restart();
-		ElapsedTime = Time::Zero;
-	}
-	ElapsedTime = clock.getElapsedTime();
-}
 void Engine::RunEngine(sf::RenderWindow& window)
 {
 	gameplay = GAME;
@@ -38,10 +29,27 @@ void Engine::RunEngine(sf::RenderWindow& window)
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			motion.IsMoveKeyPressed(event, character.character, direction, movement_of_character);
+			switch (event.type)
+			{
+			case sf::Event::KeyPressed:
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+				{
+					exit(1);
+				}
+				break;
+			case::sf::Event::KeyReleased:
+				movement_of_character = STAND;
+				break;
+			}
 		}
-		GameLoop();
-		motion.Move(window, character.character, direction, movement_of_character);
+		if (ElapsedTime.asSeconds() > (1.f / FPS))
+		{	
+			motion.IsMoveKeyPressed(character.character, direction, movement_of_character);
+			motion.Move(window, character.character, direction, movement_of_character);
+			clock.restart();
+			ElapsedTime = Time::Zero;
+		}
+		
 		window.clear();
 		for (int x = 0; x < level.height; x++)
 		{
@@ -52,5 +60,6 @@ void Engine::RunEngine(sf::RenderWindow& window)
 		}
 		window.draw(character.character);	
 		window.display();
+		ElapsedTime = clock.getElapsedTime();
 	}
 }

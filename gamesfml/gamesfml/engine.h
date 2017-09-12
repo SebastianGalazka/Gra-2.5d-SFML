@@ -14,6 +14,5 @@ public:
 	Engine();
 	void RunEngine(sf::RenderWindow& window);
 	void IsometricMap(sf::RenderWindow *win, sf::View view);
-	void GameLoop();
 	GamePlay gameplay;
 };
