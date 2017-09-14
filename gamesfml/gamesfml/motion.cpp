@@ -72,6 +72,45 @@ void Motion::Move(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Cha
 {
 	//SetDirection(window, sprite, direction, movement_of_character);
 	Run(sprite, direction, movement_of_character);
+	Dislocation(direction, sprite, movement_of_character);
+}
+void Motion::Dislocation(Direction_of_Character &direction, sf::Sprite &sprite, Movement_Of_Character &movement_of_character)
+{
+	if (movement_of_character == RUN)
+	{
+		if (direction == N)
+		{
+			sprite.move(0, -5);
+		}
+		if (direction == S)
+		{
+			sprite.move(0,  5);
+		}
+		if (direction == W)
+		{
+			sprite.move(-5, 0);
+		}
+		if (direction == E)
+		{
+			sprite.move(5, 0);
+		}
+		if (direction == NE)
+		{
+			sprite.move(5, -5);
+		}
+		if (direction == SW)
+		{
+			sprite.move(-5, 5);
+		}
+		if (direction == NW)
+		{
+			sprite.move(-5, -5);
+		}
+		if (direction == SE)
+		{
+			sprite.move(5, 5);
+		}
+	}
 }
 void Motion::IsMoveKeyPressed(sf::Sprite &sprite, Direction_of_Character &direction, Movement_Of_Character &movement_of_character)
 {

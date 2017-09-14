@@ -18,5 +18,6 @@ public:
 	void SetDirection(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character &direction, Movement_Of_Character &movement_of_character);
 	void Shot(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character &direction);
 	void Run(sf::Sprite &sprite, Direction_of_Character &direction, Movement_Of_Character &movement_of_character);
+	void Dislocation(Direction_of_Character &direction, sf::Sprite &sprite, Movement_Of_Character &movement_of_character);
 	int Rotation(sf::RenderWindow& window, sf::Sprite &sprite);
 };
