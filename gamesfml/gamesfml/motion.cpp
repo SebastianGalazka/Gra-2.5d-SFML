@@ -71,6 +71,7 @@ void Motion::SetDirection(sf::RenderWindow& window, sf::Sprite &sprite, Directio
 void Motion::Move(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character &direction, Movement_Of_Character &movement_of_character)
 {
 	//SetDirection(window, sprite, direction, movement_of_character);
+	animation.ReloadWeapon(sprite, direction, movement_of_character);
 	Run(sprite, direction, movement_of_character);
 	Dislocation(direction, sprite, movement_of_character);
 }
@@ -154,7 +155,6 @@ void Motion::IsMoveKeyPressed(sf::Sprite &sprite, Direction_of_Character &direct
 		direction = SE;
 		movement_of_character = RUN;
 	}
-
 }
 void Motion::Shot(sf::RenderWindow& window, sf::Sprite &sprite, Direction_of_Character &direction)
 {

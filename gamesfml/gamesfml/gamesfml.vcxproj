@@ -176,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\Desktop\grafika.png" />
+    <Image Include="character.png" />
     <Image Include="czolg.png" />
     <Image Include="swat.png" />
     <Image Include="swat1.png" />

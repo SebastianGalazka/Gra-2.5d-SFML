@@ -8,6 +8,9 @@ class Animation
 public:
 	sf::Clock clock;
 	sf::Time time;
-	int Frame = 1;
+	int FrameMove = 1, FrameReload = 1;;
+
 	void UpdateFrameOfCharacter(sf::Sprite &sprite, Direction_of_Character &direction);
+	void MoveCharacter(sf::Sprite &sprite, Direction_of_Character &direction);
+	void ReloadWeapon(sf::Sprite &sprite, Direction_of_Character &direction, Movement_Of_Character &movement_of_character);
 };

@@ -32,6 +32,10 @@ void Engine::RunEngine(sf::RenderWindow& window)
 			switch (event.type)
 			{
 			case sf::Event::KeyPressed:
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+				{
+					movement_of_character = RELOAD;
+				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 				{
 					exit(1);
@@ -44,6 +48,8 @@ void Engine::RunEngine(sf::RenderWindow& window)
 		}
 		if (ElapsedTime.asSeconds() > (1.f / FPS))
 		{	
+			view.setCenter(character.character.getPosition());
+			window.setView(view);
 			motion.IsMoveKeyPressed(character.character, direction, movement_of_character);
 			motion.Move(window, character.character, direction, movement_of_character);
 			clock.restart();
